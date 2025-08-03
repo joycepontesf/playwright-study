@@ -6,10 +6,10 @@ export class Login {
         this.page = page
     }
 
-    async do(email, password) {
+    async do(email, password, username) {
         this.visit()
         this.submitLogin(email, password)
-        this.isLoggedIn()
+        this.isLoggedIn(username)
     }
 
     async visit() {
@@ -23,9 +23,9 @@ export class Login {
         await this.page.getByText('Entrar').click()
     }
 
-    async isLoggedIn() {
+    async isLoggedIn(username) {
         const loggedUser = this.page.locator('.logged-user')
-        await expect(loggedUser).toHaveText('Olá, Admin')
+        await expect(loggedUser).toHaveText(`Olá, ${username}`)
     }
 
     async alertHaveText(text) {

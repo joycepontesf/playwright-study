@@ -8,20 +8,15 @@ test('Should allow registering a new movie', async ({ page }) => {
 
     await executeSQL(`DELETE FROM movies WHERE title = '${movie.title}'`)
 
-    await page.login.do(login.email, login.password)
-    await page.login.isLoggedIn()
+    await page.login.do(login.email, login.password, 'Admin')
 
-    await page.movies.create(movie.title, movie.overview, movie.company, movie.release_year)
+    await page.movies.create(movie)
 
     await page.toast.containText('Cadastro realizado com sucesso!')
 })
 
 test('Should not allow registering a new movie with empty fields', async ({ page }) => {
-    const movie = data.create
-
-    await page.login.do(login.email, login.password)
-    await page.login.isLoggedIn()
-
+    await page.login.do(login.email, login.password, 'Admin')
 
     await page.movies.goForm()
     await page.movies.submitForm()

@@ -5,7 +5,7 @@ test('Should allow user to log in successfully', async ({ page }) => {
   await page.login.visit()
   await page.login.submitLogin(login.email, login.password)
   
-  await page.movies.isLoggedIn()
+  await page.login.isLoggedIn()
 })
 
 test('Should not allow login with incorrect password', async ({ page }) => {
@@ -36,7 +36,7 @@ test('Should not allow login with empty password', async ({ page }) => {
   await page.login.alertHaveText('Campo obrigatório')
 })
 
-test('Should not allow login with empty email and password ', async ({ page }) => {
+test('Should not allow login with empty email and password', async ({ page }) => {
   await page.login.visit()
   await page.login.submitLogin('', '')
   

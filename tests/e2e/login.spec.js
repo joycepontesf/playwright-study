@@ -5,7 +5,7 @@ test('Should allow user to log in successfully', async ({ page }) => {
   await page.login.visit()
   await page.login.submitLogin(login.email, login.password)
   
-  await page.login.isLoggedIn()
+  await page.login.isLoggedIn('Admin')
 })
 
 test('Should not allow login with incorrect password', async ({ page }) => {

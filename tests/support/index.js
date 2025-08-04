@@ -1,7 +1,7 @@
 const { test: base, expect } = require('@playwright/test')
 
 const { Login } = require('./actions/Login')
-const { Toast } = require('./actions/Components')
+const { Popup } = require('./actions/Components')
 const { Movies } = require('./actions/Movies')
 const { Leads } = require('./actions/Leads')
 const { Api } = require('./api')
@@ -11,10 +11,10 @@ const test = base.extend({
 
         const context = page
 
-        context['leads'] = new Leads(page),
-            context['login'] = new Login(page),
-            context['movies'] = new Movies(page),
-            context['toast'] = new Toast(page)
+        context['leads'] = new Leads(page)
+        context['login'] = new Login(page)
+        context['movies'] = new Movies(page)
+        context['popup'] = new Popup(page)
 
         await use(context)
     },
@@ -23,6 +23,7 @@ const test = base.extend({
         const context = request
 
         context['api'] = new Api(request)
+        await context['api'].setToken()
 
         await use(context)
     }

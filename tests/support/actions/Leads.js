@@ -1,13 +1,16 @@
+require('dotenv').config()
+
 import { expect } from '@playwright/test'
 
 export class Leads {
 
     constructor(page) {
+        this.baseURL = process.env.BASE_URL
         this.page = page
     }
 
     async visit() {
-        await this.page.goto('localhost:3000')
+        await this.page.goto(this.baseURL + '/')
 
     }
 

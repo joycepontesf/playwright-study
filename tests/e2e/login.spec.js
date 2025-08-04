@@ -12,7 +12,7 @@ test('Should not allow login with incorrect password', async ({ page }) => {
   await page.login.visit()
   await page.login.submitLogin(login.email, 'abc123')
 
-  await page.toast.containText('Ocorreu um erro ao tentar efetuar o login. Por favor, verifique suas credenciais e tente novamente.')
+  await page.popup.containText('Ocorreu um erro ao tentar efetuar o login. Por favor, verifique suas credenciais e tente novamente.')
 })
 
 test('Should not allow login with invalid email', async ({ page }) => {

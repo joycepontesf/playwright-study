@@ -21,9 +21,12 @@ export class Movies {
 
         await this.page.locator('#select_year .react-select__indicator').click()
         await this.page.locator('.react-select__option').filter({ hasText: movie.release_year }).click()
-        
+
         await this.page.locator('input[name="cover"]').setInputFiles('tests/support/fixtures' + movie.cover)
 
+        if (movie.featured) {
+            await this.page.locator('.featured .react-switch').click()
+        }
 
         await this.submitForm()
     }

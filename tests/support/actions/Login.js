@@ -1,19 +1,22 @@
+require('dotenv').config()
+ 
 import { expect } from '@playwright/test'
 
 export class Login {
 
     constructor(page) {
+        this.baseURL = process.env.BASE_URL
         this.page = page
     }
 
     async do(email, password, username) {
-        this.visit()
-        this.submitLogin(email, password)
-        this.isLoggedIn(username)
+        await this.visit()
+        await this.submitLogin(email, password)
+        await this.isLoggedIn(username)
     }
 
     async visit() {
-        await this.page.goto('localhost:3000/admin/login')
+        await this.page.goto(this.baseURL + '/admin/login')
     }
 
     async submitLogin(email, password) {

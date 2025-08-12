@@ -1,12 +1,13 @@
+require('dotenv').config()
 const { Pool } = require('pg')
 const data = require('./fixtures/database.json')
 
 const DbConfig = {
-    database: data.database,
-    port: data.port,
-    host: data.host,
-    user: data.user,
-    password: data.password,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
 }
 
 export async function executeSQL(sqlScript) {

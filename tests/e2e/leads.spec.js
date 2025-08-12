@@ -1,4 +1,4 @@
-const { test, expect } = require ('../support')
+const { test } = require ('../support')
 const { faker } = require ('@faker-js/faker')
 
 test('Should allow registering a new lead', async ({ page }) => {
@@ -9,7 +9,7 @@ test('Should allow registering a new lead', async ({ page }) => {
   await page.leads.openLeadModal()
   await page.leads.submitLeadModal(leadName, leadEmail)
 
-  await page.toast.containText('Agradecemos por compartilhar seus dados conosco. Em breve, nossa equipe entrará em contato!')
+  await page.popup.containText('Agradecemos por compartilhar seus dados conosco. Em breve, nossa equipe entrará em contato.')
 })
 
 test('Should not allow registering a new lead with an existing email', async ({ page, request }) => {
@@ -27,7 +27,7 @@ test('Should not allow registering a new lead with an existing email', async ({ 
   await page.leads.openLeadModal()
   await page.leads.submitLeadModal(leadName, leadEmail)
 
-  await page.toast.containText('O endereço de e-mail fornecido já está registrado em nossa fila de espera.')
+  await page.popup.containText('Verificamos que o endereço de e-mail fornecido já consta em nossa lista de espera. Isso significa que você está um passo mais perto de aproveitar nossos serviços.')
 })
 
 test('Should not allow registering a new lead with an invalid email', async ({ page }) => {
